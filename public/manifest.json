@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "My Phone",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "scripting",
+    "unlimitedStorage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "wss://*/*"
+  ],
+  "icons": {
+    "32": "icon.png"
+  }
+}
