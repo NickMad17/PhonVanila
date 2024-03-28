@@ -1,7 +1,6 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import {setupCounter} from './counter.js'
+import {initTemplate} from "./init/initTemplate.js";
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -12,10 +11,9 @@ document.querySelector('#app').innerHTML = `
     <p class="read-the-docs">
       Click on the Vite logo to learn more
     </p>
+    <div id="btn-box"></div>
+    <div id="btn"></div>
   </div>
 `
+// initTemplate()
 setupCounter()
-
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
-    .then(json => console.log(json))

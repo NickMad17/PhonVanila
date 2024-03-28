@@ -4,7 +4,7 @@ export function setupCounter() {
   const socket = new JsSIP.WebSocketInterface('wss://voip.uiscom.ru');
   const configuration = {
     sockets  : [ socket ],
-    uri      : '0344865@voip.uiscom.ru',
+    uri      : 'sip:0344864@voip.uiscom.ru',
     password : 'g22ZNzHuh4'
   };
 
@@ -36,32 +36,10 @@ export function setupCounter() {
     'mediaConstraints' : { 'audio': true }
   };
 
-  // ua.on('newRTCSession', (data) => {
-  //   console.log('вас вызывают')
-  //   const session = data.session;
-  //
-  //   // Ваш код для обработки входящего звонка здесь
-  //   // Например, принять звонок
-  //   // session.answer();
-  //
-  //   // Добавьте дополнительные обработчики событий для звонка
-  //   session.on('accepted', () => {
-  //     console.log('Звонок принят');
-  //   });
-  //
-  //   session.on('ended', () => {
-  //     console.log('Звонок завершен');
-  //   });
-  //
-  //   session.on('failed', () => {
-  //     console.log('Звонок завершился неудачно');
-  //   });
-  // });
-
 
   const btn =  document.getElementById('call')
 
-  btn.addEventListener('click', async () => {
-    await ua.call('0344864@voip.uiscom.ru', options)
+  btn.addEventListener('click', () => {
+    ua.call('sip:0344865@voip.uiscom.ru', options)
   })
 }
