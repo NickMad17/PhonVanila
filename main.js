@@ -1,19 +1,29 @@
 import './style.css'
-import {setupCounter} from './counter.js'
-import {initTemplate} from "./init/initTemplate.js";
-
+import {CallPage} from "./pages/CallPage.js";
+import {HistoryPage} from "./pages/HistoryPage.js";
+import {CallBtn} from "./components/CallBtn.js";
+localStorage.setItem('user', '0344865')
 document.querySelector('#app').innerHTML = `
   <div>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="call" type="button">позвонить</button>
+    <div class="nav__box">
+      <button class="nav" id="call-page">Позвонить</button>
+      <button class="nav" id="history-page">История</button>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-    <div id="btn-box"></div>
-    <div id="btn"></div>
+    <div id="this-page"></div>
   </div>
 `
-// initTemplate()
-setupCounter()
+CallPage()
+CallBtn()
+document.querySelectorAll('.nav').forEach(item => {
+  item.addEventListener('click', (e) => {
+    if (e.target.id === 'history-page') {
+      HistoryPage()
+    }
+    if (e.target.id === 'call-page') {
+      CallPage()
+    }
+  })
+})
+
+
+
