@@ -36,6 +36,13 @@ h1 {
     line-height: 1.1;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
 #app {
     padding: 2rem;
     text-align: center;
@@ -80,12 +87,51 @@ button:focus-visible {
 .nav__box {
     display: flex;
     gap: 10px;
-    justify-content: end;
+    justify-content: center;
 }
 
-.input {
+
+.box {
     width: 100%;
-    height: 30px;
+}
+.numb__box  {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+}
+
+.numb{
+    border: 1px solid white;
+}
+
+.numb:hover {
+    border-color: #8700f5;
+}
+
+.input-numb {
+    color: #08e700;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 30px;
     text-align: center;
-    font-size: 18px;
+    border: none;
+    background:transparent;
+    overflow: hidden;
+}
+.input-numb:focus {
+    outline: none;
+}
+
+.active {
+    background: #000;
+    border-color: #08e700;
+}
+
+.active:hover {
+    border-color: #059800;
+}
+
+.active:focus {
+    outline: none;
 }
