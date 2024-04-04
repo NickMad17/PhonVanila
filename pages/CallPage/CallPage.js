@@ -1,40 +1,20 @@
-import {CallBtn} from "../../components/CallBtn.js";
-import {listeners} from "./listeners.js";
+import {KeyPad} from "../../components/KeyPad/KeyPad.js";
+import {CallPerson} from "../../components/CallPerson/CallPerson.js";
 
-export const CallPage = () => {
-  let inputValue = ''
-  document.getElementById('this-page').innerHTML = `
-    <p>${localStorage.getItem('user')}</p>
+export const CallPage = ({context}) => {
+  const {btnCall} = context
+  const html = `
+      ${context.btnCall === 'default' ? KeyPad({context}): CallPerson({context})}
+    <button id="call" style="background: ${btnCall === 'default' ? 'green' : btnCall === 'loading' ? 'orange' : btnCall === 'youCall' ? 'green': btnCall === 'call' ? 'red' : ''}">
+        ${btnCall === 'default' ? 'Позвонить' : btnCall === 'loading' ? 'Вызов...' : btnCall === 'youCall' ? 'Ответить' : btnCall === 'call' ? 'Отбой': ''}
+    </button>
+    ${btnCall === 'youCall' || btnCall === 'loading'  ? `
+      <button id="reset">
+        Отмена
+      </button>
+    ` : ""}
     
-    <div class="box" >
-    <input type="number" class="input-numb" id="input" />
-    <div class="numb__box">
-    <button class="numb">1</button>
-    <button class="numb">2</button>
-    <button class="numb">3</button>
-    <button class="numb">4</button>
-    <button class="numb">5</button>
-    <button class="numb">6</button>
-    <button class="numb">7</button>
-    <button class="numb">8</button>
-    <button class="numb">9</button>
-    <button>*</button>
-    <button class="numb">0</button>
-    <button id="erase"><-</button>
-    </div>
-    <div style="margin-top: 10px" id="btn-box"></div>
-  </div>
+      
   `
-  const input = document.getElementById('input')
-  const erase = document.getElementById('erase')
-  const numbers = document.querySelectorAll('.numb')
-  input.addEventListener('input', (e) => {
-    inputValue = e.target.value
-    listeners(numbers, erase, input, inputValue)
-    CallBtn(inputValue)
-  })
-  listeners(numbers, erase, input, inputValue)
-  CallBtn(inputValue)
+  return html
 }
-
-// 0344864

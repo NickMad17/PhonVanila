@@ -8,12 +8,13 @@
   "permissions": [
     "scripting",
     "unlimitedStorage",
-    "notifications"
+    "notifications",
+    "tabs",
+    "activeTab"
   ],
   "host_permissions": [
     "http://*/*",
-    "https://*/*",
-    "wss://*/*"
+    "https://*/*"
   ],
   "icons": {
     "32": "icon.png"

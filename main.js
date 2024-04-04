@@ -1,38 +1,31 @@
 import './style.css'
-import {CallPage} from "./pages/CallPage/CallPage.js";
-import {HistoryPage} from "./pages/HistoryPage.js";
-localStorage.setItem('user', '0344865')
-document.querySelector('#app').innerHTML = `
-  <div>
-    <div class="nav__box">
-      <button class="nav active" id="call-page">Позвонить</button>
-      <button class="nav" id="history-page">История</button>
-    </div>
-    <div id="this-page"></div>
-  </div>
-`
-CallPage()
+import {render} from "./init/render.js";
+import {context} from "./conntext/context.js";
+import {JsSipListeners} from "./utils/JsSipListeners.js";
+import {initKeyListeners} from "./init/initKeyListeners.js";
+import {Login} from "./pages/Login/Login.js";
 
-// nav
-const navHistory = document.getElementById('history-page')
-const navCall = document.getElementById('call-page')
+const history = localStorage?.getItem('history')
+if (history) {
+  localStorage.setItem('history',JSON.stringify(
+      [
+        ...JSON.parse(history)
+      ]
+  ))
+} else {
+  localStorage.setItem('history', '[]')
+}
 
-document.querySelectorAll('.nav').forEach(item => {
-  item.addEventListener('click', (e) => {
-    if (e.target.id === 'history-page') {
-      navHistory.classList.add('active')
-      navCall.classList.remove('active')
+export const loginInServer = () => {
+  console.log('www')
+  if (localStorage?.getItem('name') && localStorage.getItem('server')) {
+    render({context})
+    JsSipListeners()
+    initKeyListeners()
+  } else {
+    localStorage.setItem('history', '[]')
+    Login()
+  }
+}
 
-      HistoryPage()
-    }
-    if (e.target.id === 'call-page') {
-      navCall.classList.add('active')
-      navHistory.classList.remove('active')
-
-      CallPage()
-    }
-  })
-})
-
-
-
+loginInServer()
