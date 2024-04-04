@@ -21,7 +21,7 @@ git clone https://github.com/NickMad17/PhonVanila
 npm install
 ```
 
-4. Сборка расширения 
+3. Сборка расширения 
 
 ```
 npm run build
