@@ -26,3 +26,6 @@ npm install
 ```
 npm run build
 ```
+
+добавить в google расширения через папку dist
+
