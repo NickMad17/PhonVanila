@@ -3,7 +3,8 @@ import {newCall} from "../init/newCall.js";
 
 const name = localStorage.getItem('name')
 const host = localStorage.getItem('server')
-export const ua = initJsSip(name, host)
+const password = localStorage.getItem('password')
+export const ua = initJsSip(name, host, password)
 
 export const JsSipListeners = () => {
   ua.start();

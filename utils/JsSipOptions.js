@@ -24,5 +24,5 @@ const eventHandlers = {
 
 export const options = {
   'eventHandlers': eventHandlers,
-  'mediaConstraints': {'audio': true}
+  'mediaConstraints': { 'audio': { 'mandatory': { 'echoCancellation': true } } }
 };

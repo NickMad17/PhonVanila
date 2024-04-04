@@ -18,7 +18,7 @@ if (history) {
 
 export const loginInServer = () => {
   console.log('www')
-  if (localStorage?.getItem('name') && localStorage.getItem('server')) {
+  if (localStorage?.getItem('name') && localStorage?.getItem('server') && localStorage?.getItem('password')) {
     render({context})
     JsSipListeners()
     initKeyListeners()

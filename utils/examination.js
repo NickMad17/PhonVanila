@@ -1,9 +1,9 @@
 import {initJsSip} from "../init/initJsSip.js";
 import {loginInServer} from "../main.js";
 
-export const examination = (name, host) => {
+export const examination = (name, host, password) => {
   try {
-    const ua = initJsSip(name, host)
+    const ua = initJsSip(name, host,password)
     ua.start();
     ua.on('connected', function (e) {
       if (e.socket)
@@ -16,6 +16,7 @@ export const examination = (name, host) => {
   } catch (err) {
     localStorage.removeItem('name')
     localStorage.removeItem('server')
+    localStorage.removeItem('password')
     console.log(err.message)
     return err.message
   }

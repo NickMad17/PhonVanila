@@ -1,11 +1,11 @@
 import * as JsSIP from "jssip";
 
-export const initJsSip = (name, host) => {
+export const initJsSip = (name, host, password) => {
   const socket = new JsSIP.WebSocketInterface(`wss://${host}`);
   const configuration = {
     sockets  : [ socket ],
     uri      : `sip:${name}@${host}`,
-    password : 'g22ZNzHuh4'
+    password : password
   };
 
   const ua = new JsSIP.UA(configuration);
