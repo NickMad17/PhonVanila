@@ -57,7 +57,7 @@ export const newCall = () => {
         remoteStream.getTracks().forEach(function(track) {
           track.stop();
         })
-      };
+      }
 
       stopTimer()
       const history = JSON.parse(localStorage.getItem('history'))
