@@ -7,7 +7,6 @@ import {callBtnListeners} from "../components/CallBtn/callBtnListeners.js";
 import {historyPageListeners} from "../pages/HistoryPage/historyPageListeners.js";
 
 export const render = ({context}) => {
-  console.log(context)
   const {page} = context
   document.querySelector('#app').innerHTML = `
     <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; gap: 15px">

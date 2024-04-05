@@ -16,12 +16,9 @@ export const newCall = () => {
     const session = data.session;
 
     const remoteIdentity = session._remote_identity;
-    const callerName = remoteIdentity._display_name || remoteIdentity._uri._user;
-
-    context.callUser.name = callerName
+    context.callUser.name = remoteIdentity._display_name || remoteIdentity._uri._user
     currentAnswer = session
 
-    console.log(session)
     context.page = 'callPage'
     if (session.direction === "incoming") {
       ringtone.play();
@@ -35,20 +32,33 @@ export const newCall = () => {
     }
     // Ваш код для обработки входящего звонка здесь
     // Например, принять звонок
-
     // Добавьте дополнительные обработчики событий для звонка
     session.on('accepted', () => {
       ringtone.pause();
+      const remoteStream = session.connection.getRemoteStreams()[0]
+      console.log('Аудиопоток установлен:', remoteStream);
+
+      const audioElement = document.createElement('audio');
+      audioElement.srcObject = remoteStream;
+      audioElement.play();
+
       console.log('Звонок принят');
       startTimer()
       context.btnCall = 'call'
       render({context})
-      console.log(context)
     });
 
 
     session.on('ended', () => {
       ringtone.pause();
+
+      const remoteStream = session.connection.getRemoteStreams()[0];
+      if (remoteStream) {
+        remoteStream.getTracks().forEach(function(track) {
+          track.stop();
+        })
+      };
+
       stopTimer()
       const history = JSON.parse(localStorage.getItem('history'))
       history.push(context.callUser)

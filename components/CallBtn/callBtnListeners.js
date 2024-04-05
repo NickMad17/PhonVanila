@@ -1,6 +1,7 @@
 import {context} from "../../conntext/context.js";
 import {currentAnswer} from "../../init/newCall.js";
 import {call} from "../../utils/call.js";
+import {options} from "../../utils/JsSipOptions.js";
 
 
 export const callBtnListeners = () => {
@@ -13,7 +14,8 @@ export const callBtnListeners = () => {
       }
     }
     if (context.btnCall === "youCall") {
-      currentAnswer.answer()
+      currentAnswer.answer(options)
+
     }
     if (context.btnCall === "call") {
       currentAnswer.terminate()

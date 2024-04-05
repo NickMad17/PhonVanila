@@ -24,5 +24,8 @@ const eventHandlers = {
 
 export const options = {
   'eventHandlers': eventHandlers,
-  'mediaConstraints': {'audio': true, 'video': true}
+  'mediaConstraints': {'audio': true},
+  render: {
+    remote: document.getElementById('audio') // элемент, на котором будет воспроизводиться аудио
+  }
 };
